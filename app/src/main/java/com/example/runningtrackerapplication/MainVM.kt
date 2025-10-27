@@ -9,11 +9,9 @@ import kotlinx.coroutines.launch
 class MainViewModel : ViewModel() {
     private val repository = RunRepository()
 
-    // Състояние за списъка с всички пробези - сега с LiveData
     private val _runs = MutableLiveData<List<Run>>(emptyList())
     val runs: LiveData<List<Run>> = _runs
 
-    // Функция за стартиране на слушане за промени в данните
     init {
         listenToRuns()
     }
@@ -21,7 +19,6 @@ class MainViewModel : ViewModel() {
     private fun listenToRuns() {
         repository.getRuns().addSnapshotListener { snapshot, error ->
             if (error != null) {
-                // Има грешка, обработката й е тук
                 return@addSnapshotListener
             }
 
@@ -33,13 +30,11 @@ class MainViewModel : ViewModel() {
                         runsList.add(it.copy(id = document.id))
                     }
                 }
-                // Актуализирай LiveData с новия списък
                 _runs.value = runsList
             }
         }
     }
 
-    // Функции за CRUD операции (остават същите)
     fun addRun(run: Run) {
         viewModelScope.launch {
             repository.addRun(run)

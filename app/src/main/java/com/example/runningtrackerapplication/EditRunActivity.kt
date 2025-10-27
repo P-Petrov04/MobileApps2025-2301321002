@@ -26,10 +26,8 @@ class EditRunActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_run)
 
-        // Инициализация на ViewModel
         viewModel = MainViewModel()
 
-        // Вземи предадения Run обект от intent
         currentRun = intent.getSerializableExtra("RUN_EXTRA") as? Run ?: run {
             Toast.makeText(this, "Грешка при зареждане на данните", Toast.LENGTH_SHORT).show()
             finish()
@@ -51,12 +49,10 @@ class EditRunActivity : AppCompatActivity() {
     }
 
     private fun populateData() {
-        // Попълни полетата с текущите данни
         editName.setText(currentRun.name)
         editDistance.setText(currentRun.distanceInKm.toString())
-        editTime.setText((currentRun.timeInMillis / 60000).toString()) // Конвертирай в минути
+        editTime.setText((currentRun.timeInMillis / 60000).toString())
 
-        // Покажи датата на създаване
         val date = Date(currentRun.timestamp)
         val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
         timestampText.text = "Създаден на: ${formatter.format(date)}"
@@ -73,7 +69,6 @@ class EditRunActivity : AppCompatActivity() {
     }
 
     private fun saveRun() {
-        // Валидация на данните
         val name = editName.text.toString().trim()
         val distanceText = editDistance.text.toString().trim()
         val timeText = editTime.text.toString().trim()
@@ -86,16 +81,14 @@ class EditRunActivity : AppCompatActivity() {
         try {
             val distance = distanceText.toDouble()
             val timeMinutes = timeText.toLong()
-            val timeMillis = timeMinutes * 60000 // Конвертирай минути в милисекунди
+            val timeMillis = timeMinutes * 60000
 
-            // Създай обновения Run обект
             val updatedRun = currentRun.copy(
                 name = name,
                 distanceInKm = distance,
                 timeInMillis = timeMillis
             )
 
-            // Запази промените
             viewModel.updateRun(updatedRun)
 
             Toast.makeText(this, "Пробегът е запазен успешно!", Toast.LENGTH_SHORT).show()
@@ -107,7 +100,6 @@ class EditRunActivity : AppCompatActivity() {
     }
 
     private fun deleteRun() {
-        // Изтрий записа
         viewModel.deleteRun(currentRun.id)
         Toast.makeText(this, "Пробегът е изтрит успешно!", Toast.LENGTH_SHORT).show()
         finish()

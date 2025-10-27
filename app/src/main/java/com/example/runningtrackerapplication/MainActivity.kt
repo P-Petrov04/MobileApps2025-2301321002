@@ -20,10 +20,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Инициализация на ViewModel
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        // Инициализация на UI компоненти
         initViews()
         setupRecyclerView()
         setupObservers()
@@ -38,7 +36,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         adapter = RunAdapter(emptyList()) { run ->
-            // 👈 ПРОМЕНИ ТОВА - отваряне на EditRunActivity
             val intent = Intent(this, EditRunActivity::class.java).apply {
                 putExtra("RUN_EXTRA", run)
             }
@@ -56,7 +53,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupClickListeners() {
         startButton.setOnClickListener {
-            // Временно - тестов запис
             viewModel.addRun(
                 Run(
                     name = "Тестов пробег",

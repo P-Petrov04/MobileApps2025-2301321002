@@ -2,12 +2,19 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("com.google.gms.google-services")
-    // ПРЕМАХНИ compose плагините
 }
 
 android {
     namespace = "com.example.runningtrackerapplication"
     compileSdk = 34
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 
     defaultConfig {
         applicationId = "com.example.runningtrackerapplication"
@@ -17,7 +24,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        // ПРЕМАХНИ vectorDrawables
     }
 
     buildTypes {
