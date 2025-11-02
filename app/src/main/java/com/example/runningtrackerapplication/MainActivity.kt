@@ -13,8 +13,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
     private lateinit var adapter: RunAdapter
     private lateinit var recyclerView: RecyclerView
-    private lateinit var startButton: Button
-    private lateinit var stopButton: Button
+    private lateinit var startNewRunButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViews() {
         recyclerView = findViewById(R.id.runsRecyclerView)
-        startButton = findViewById(R.id.startButton)
-        stopButton = findViewById(R.id.stopButton)
+        startNewRunButton = findViewById(R.id.startNewRunButton)
     }
 
     private fun setupRecyclerView() {
@@ -52,18 +50,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupClickListeners() {
-        startButton.setOnClickListener {
-            viewModel.addRun(
-                Run(
-                    name = "Тестов пробег",
-                    distanceInKm = 5.2,
-                    timeInMillis = 1800000 // 30 минути
-                )
-            )
-        }
-
-        stopButton.setOnClickListener {
-            // Ще имплементираме по-късно
+        startNewRunButton.setOnClickListener {
+            val intent = Intent(this, MapsActivity::class.java)
+            startActivity(intent)
         }
     }
 }

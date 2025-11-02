@@ -8,14 +8,6 @@ android {
     namespace = "com.example.runningtrackerapplication"
     compileSdk = 34
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-
     defaultConfig {
         applicationId = "com.example.runningtrackerapplication"
         minSdk = 24
@@ -51,6 +43,7 @@ dependencies {
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.cardview:cardview:1.0.0")
 
     // Lifecycle и ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
@@ -63,6 +56,10 @@ dependencies {
     // Firebase
     implementation(platform("com.google.firebase:firebase-bom:32.5.0"))
     implementation("com.google.firebase:firebase-firestore-ktx")
+
+    // Google Maps and Location
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

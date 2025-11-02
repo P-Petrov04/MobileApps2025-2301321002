@@ -31,8 +31,10 @@ class RunAdapter(
         val run = runs[position]
 
         holder.name.text = run.name.ifEmpty { "Без име" }
-        holder.distance.text = "${run.distanceInKm} км"
-        holder.time.text = formatTime(run.timeInMillis)
+
+        holder.distance.text = String.format(Locale.getDefault(), "%.2f км", run.distanceInKm)
+
+        holder.time.text = formatTimeForDisplay(run.timeInMillis)
 
         val date = Date(run.timestamp)
         val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
@@ -41,6 +43,13 @@ class RunAdapter(
         holder.itemView.setOnClickListener {
             onItemClick(run)
         }
+    }
+
+    private fun formatTimeForDisplay(millis: Long): String {
+        val totalSeconds = millis / 1000
+        val minutes = totalSeconds / 60
+        val seconds = totalSeconds % 60
+        return String.format(Locale.getDefault(), "%02d:%02d мин", minutes, seconds)
     }
 
     override fun getItemCount() = runs.size

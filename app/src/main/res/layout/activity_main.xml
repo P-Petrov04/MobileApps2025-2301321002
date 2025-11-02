@@ -5,46 +5,41 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Заглавие -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Моите пробези"
+        android:text="Моите тренировки"
         android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="center"
         android:layout_marginBottom="16dp" />
 
-    <!-- Списък с пробези -->
+    <Button
+        android:id="@+id/startNewRunButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="🏁 Започни нова тренировка"
+        android:textSize="18sp"
+        android:layout_marginBottom="24dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E0E0E0"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="История на тренировките"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/runsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
-
-    <!-- Бутони Start/Stop -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="16dp">
-
-        <Button
-            android:id="@+id/startButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Start"
-            android:layout_marginEnd="8dp" />
-
-        <Button
-            android:id="@+id/stopButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Stop"
-            android:enabled="false"
-            android:layout_marginStart="8dp" />
-
-    </LinearLayout>
 
 </LinearLayout>
