@@ -6,8 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
-class MainViewModel : ViewModel() {
-    private val repository = RunRepository()
+class MainViewModel(
+    private val repository: RunRepository = RunRepository()
+) : ViewModel() {
 
     private val _runs = MutableLiveData<List<Run>>(emptyList())
     val runs: LiveData<List<Run>> = _runs
